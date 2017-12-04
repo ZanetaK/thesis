@@ -119,7 +119,7 @@ def onedrive_hkcu():
 #         print("Klíč HKCU\Software\Microsoft\Windows\CurrentVersion\Run nenalezen.")
 #         pass
 
-
+#spuštění definovaných funkcí
 amazon_drive_hkcu()
 dropbox_hkcu()
 google_drive_hkcu()
