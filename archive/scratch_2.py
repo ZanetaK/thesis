@@ -33,11 +33,10 @@ def dropbox_hkcu():
         print(key, key1, key2)
     except Registry.RegistryKeyNotFoundException:
         sys.exit(1)
-
-    # for value in [v for v in key1.values() \
-    #               if v.value_type() == Registry.RegSZ or \
-    #                               v.value_type() == Registry.RegExpandSZ]:
-    #     print("%s: %s" % (value.name(), value.value()))
+    for value in [v for v in key1.values() \
+                  if v.value_type() == Registry.RegSZ or \
+                                  v.value_type() == Registry.RegExpandSZ]:
+        print("%s: %s" % (value.name(), value.value()))
 
 def dropbox_hklm():
     # SOFTWARE soubor - najdi podklíč v Uninstall
@@ -175,4 +174,27 @@ def run_key():
                                   v.value_type() == Registry.RegDWord]:
         print("%s: %s" % (value.name(), value.value()))
 
-onedrive()
+dropbox_hkcu()
+
+# def dropbox_hkcu():
+#     # NTUSER.DAT soubor - najdi Dropbox klíče
+#     dropbox = "Dropobox: "
+#     try:
+#         try:
+#             key = reg.open("Software\\Dropbox")
+#             print(key)
+#         except Registry.RegistryKeyNotFoundException:
+#             pass
+#         try:
+#             key1 = reg.open("Software\\Dropbox\\ks")
+#             print(key1)
+#         except Registry.RegistryKeyNotFoundException:
+#             pass
+#         try:
+#             key2 = reg.open("Software\\Dropbox\\ks1")
+#             print(key2)
+#         except Registry.RegistryKeyNotFoundException:
+#             pass
+#     except Registry.RegistryKeyNotFoundException:
+#         print(dropbox + "Nenalezen")
+#         pass
