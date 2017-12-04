@@ -7,7 +7,7 @@ Skript detekce_ntuser.py prohledává klíče registru v HKCU - NTUSER.DAT soubo
 Použití skriptů:
 - Je zapotřebí mít k dispozici vyexportované "mrtvé" registry, které chcete zkoumat.
 - Skripty se spouštění z příkazové řádky:
-- <cestaKeSkriptu> <cestaKSouboruRegistru>
+- (cestaKeSkriptu) (cestaKSouboruRegistru)
 
 příklad:
 c:\Users\Žaneta\PycharmProjects\Thesis>detekce_software.py C:\Users\Žaneta\Downloads\RegistryAll\SOFTWARE
