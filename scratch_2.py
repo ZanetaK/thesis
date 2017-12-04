@@ -29,7 +29,7 @@ def dropbox_hkcu():
     try:
         key = reg.open("Software\\Dropbox")
         key1 = reg.open("Software\\Dropbox\\ks")
-        key2 = reg.open("Software\\Dropbox\\hovno kleslo")
+        key2 = reg.open("Software\\Dropbox\\ks1")
         print(key, key1, key2)
     except Registry.RegistryKeyNotFoundException:
         sys.exit(1)
