@@ -2,21 +2,20 @@ import sys
 from Registry import Registry
 
 reg = Registry.Registry(sys.argv[1])
-
-
 #Definice funkcí na prohledávání klíčů cloudových služeb
-
 def amazon_drive_hkcu():
     #NTUSER.DAT soubor - najdi podklíč v Unistall pro Amazon Drive. Pokud existuje vypiš jeho hodnoty.
     amazon = "Amazon Drive: "
     try:
         key = reg.open("Software\\Microsoft\\Windows\\CurrentVersion\\Uninstall\\Amazon Drive")
+        print()
         print(amazon + "Detekován")
         for value in [v for v in key.values() \
                       if v.value_type() == Registry.RegSZ or \
                                       v.value_type() == Registry.RegExpandSZ]:
             print("%s: %s" % (value.name(), value.value()))
     except Registry.RegistryKeyNotFoundException:
+        print()
         print(amazon + "Nenalezen")
         pass
 
@@ -27,6 +26,7 @@ def dropbox_hkcu():
         key = reg.open("Software\\Dropbox")
         key1 = reg.open("Software\\Dropbox\\ks")
         key2 = reg.open("Software\\Dropbox\\ks1")
+        print()
         print("Dropbox: " + "Detekován")
         for value in [v for v in key.values() \
                       if v.value_type() == Registry.RegSZ or \
@@ -41,6 +41,7 @@ def dropbox_hkcu():
                                       v.value_type() == Registry.RegExpandSZ]:
             print("%s: %s" % (value.name(), value.value()))
     except Registry.RegistryKeyNotFoundException:
+        print()
         print(dropbox + "Nenalezen")
         pass
 
@@ -49,12 +50,14 @@ def google_drive_hkcu():
     google_drive = "Google Drive: "
     try:
         key = reg.open("Software\\Google\\Drive")
+        print()
         print(google_drive + "Detekován")
         for value in [v for v in key.values() \
                       if v.value_type() == Registry.RegSZ or \
                                       v.value_type() == Registry.RegExpandSZ]:
             print("%s: %s" % (value.name(), value.value()))
     except Registry.RegistryKeyNotFoundException:
+        print()
         print(google_drive + "Nenalezen")
         pass
 
@@ -62,8 +65,9 @@ def icloud_hkcu():
     # ntuser.dat soubor - najdi podklíče pro iCloud a vypiš jejich hodnoty, pokud existují
     icloud = "iCloud: "
     try:
-        key = reg.open("Software\\Apple Inc.\\ASL\\filenames") #název posledního log souboru
-        key1 = reg.open("SOFTWARE\\Apple Inc.\\Internet Services") #obsahuje email v hodnotě SignedIn
+        key = reg.open("Software\\Apple Inc.\\ASL\\filenames")
+        key1 = reg.open("SOFTWARE\\Apple Inc.\\Internet Services")
+        print()
         print(icloud + "Detekován")
         for value in [v for v in key.values() \
                       if v.value_type() == Registry.RegSZ or \
@@ -74,6 +78,7 @@ def icloud_hkcu():
                                       v.value_type() == Registry.RegExpandSZ]:
             print("%s: %s" % (value.name(), value.value()))
     except Registry.RegistryKeyNotFoundException:
+        print()
         print(icloud + "Nenalezen")
         pass
 
@@ -84,6 +89,7 @@ def onedrive_hkcu():
         key = reg.open("Software\\Microsoft\\OneDrive")
         key1 = reg.open("Software\\Microsoft\\OneDrive\\Accounts\\Personal")
         key2 = reg.open("Software\\Microsoft\\OneDrive\\Accounts\\Personal\\ScopeIdToMountPointPathCache")
+        print()
         print(onedrive + "Detekován")
         for value in [v for v in key.values() \
                       if v.value_type() == Registry.RegSZ or \
@@ -99,11 +105,10 @@ def onedrive_hkcu():
                                       v.value_type() == Registry.RegExpandSZ]:
             print("%s: %s" % (value.name(), value.value()))
     except Registry.RegistryKeyNotFoundException:
+        print()
         print(onedrive + "Nenalezeno")
 
-
 #definice funkce pro hledání podklíče Run a vypsání všech hodnot
-
 # def run_key():
 #     #prohledání HKCU\Software\Microsoft\Windows\CurrentVersion\Run v NTUSER.DAT
 #     #vypíše všechny hodnoty klíče
@@ -125,4 +130,5 @@ dropbox_hkcu()
 google_drive_hkcu()
 icloud_hkcu()
 onedrive_hkcu()
-exit(print("Ukončení skriptu"))
+print()
+exit(print("-------------Ukončení skriptu-------------"))
