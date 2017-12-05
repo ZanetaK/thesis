@@ -1,3 +1,7 @@
+#autor: Žaneta Kašparová
+#verze: 1.0.0
+#datum: 2017-12-05
+
 import sys
 from Registry import Registry
 
